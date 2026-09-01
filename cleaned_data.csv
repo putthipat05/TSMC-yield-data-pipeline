@@ -1,0 +1,5 @@
+OrderID,Customer,Age,Target_Product,Price,OrderDate
+101, Alice ,25.0,iPhone,30000,2026-01-01
+102,Bob,30.0,ipad,25000,2026-01-02
+102,Bob,30.0,ipad,25000,2026-01-02
+105,David,28.0,missing,,2026-01-04
