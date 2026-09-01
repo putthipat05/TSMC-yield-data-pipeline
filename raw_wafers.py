@@ -1,18 +1,18 @@
 import pandas as pd
 import numpy as np
 
-# ตั้งค่า Seed เพื่อให้สุ่มได้ข้อมูลเหมือนกันทุกครั้งที่รัน
+
 np.random.seed(42)
 n_rows = 1000
 
-# 1. จำลองตาราง df_wafers (1,000 รายการ)
+
 wafer_ids = [f" WF-{i:04d} " if i % 3 == 0 else f"WF-{i:04d}" for i in range(1001, 1001 + n_rows)]
 lot_codes = np.random.choice(['l-a1', 'L-A1 ', 'L-B2', 'l-b2 ', 'L-C3', 'L-C3 '], size=n_rows)
 thickness = np.random.normal(loc=725.0, scale=3.5, size=n_rows)
-# ใส่ NaN ใน Thickness 5%
+
 thickness[np.random.choice(n_rows, size=int(n_rows * 0.05), replace=False)] = np.nan
 
-# วันที่แบบ Format ผสมและมี Space
+
 date_formats = ['2026-08-{:02d} ', ' {:02d}/08/2026', '2026/08/{:02d}']
 dates = [
     date_formats[i % 3].format(np.random.randint(1, 29))
@@ -26,7 +26,7 @@ df_wafers = pd.DataFrame({
     'Inspection_Date': dates
 })
 
-# 2. จำลองตาราง df_yield (800 รายการ - ข้อมูลบาง Wafer ยังไม่ได้ตรวจ)
+
 yield_wafer_ids = [f"WF-{i:04d}" for i in range(1001, 1001 + 800)]
 defects = np.random.choice(['NONE', 'none', ' edge_scratch ', 'EDGE_SCRATCH', 'RING_DEFECT', 'ring_defect'], size=800, p=[0.5, 0.1, 0.1, 0.1, 0.1, 0.1])
 passed_dies = np.random.randint(750, 1000, size=800)
